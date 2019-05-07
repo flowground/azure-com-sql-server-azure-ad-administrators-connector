@@ -1,0 +1,101 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serverName": {
+            "required": true,
+            "type": "string"
+        },
+        "administratorName": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "activeDirectory"
+            ]
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "ARM resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object",
+                            "x-ms-azure-resource": true
+                        }
+                    ],
+                    "description": "ARM proxy resource.",
+                    "properties": {},
+                    "type": "object"
+                }
+            ],
+            "description": "An server Active Directory Administrator.",
+            "properties": {
+                "properties": {
+                    "description": "The properties of the resource.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "administratorType": {
+                            "description": "The type of administrator.",
+                            "enum": [
+                                "ActiveDirectory"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "name": "AdministratorType"
+                            }
+                        },
+                        "login": {
+                            "description": "The server administrator login value.",
+                            "type": "string"
+                        },
+                        "sid": {
+                            "description": "The server administrator Sid (Secure ID).",
+                            "format": "uuid",
+                            "type": "string"
+                        },
+                        "tenantId": {
+                            "description": "The server Active Directory Administrator tenant id.",
+                            "format": "uuid",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "tenantId",
+                        "administratorType",
+                        "login",
+                        "sid"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
